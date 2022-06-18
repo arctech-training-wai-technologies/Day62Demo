@@ -35,7 +35,7 @@ public class AwaitAsyncTest
 
     public static async Task EntityFrameworkDemo()
     {
-        using var dbContext = new ApplicationDbContext();
+        await using var dbContext = new ApplicationDbContext();
 
         var department = new Department
         {
@@ -45,5 +45,6 @@ public class AwaitAsyncTest
 
         //dbContext.Departments.Add(department);
         await dbContext.Departments.AddAsync(department);
+        await dbContext.SaveChangesAsync();
     }
 }
